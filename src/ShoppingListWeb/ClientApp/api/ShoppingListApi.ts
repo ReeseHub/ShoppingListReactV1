@@ -1,11 +1,17 @@
 ﻿import SERVER_BASE_URL from './config';
 
+interface pageParameter
+{
+    page: number;
+    size : number
+};
+
 // API Pets static class
-export default class ApiPets {
+export default class ShoppingListApi {
 
     // get a list of pets
-    static getList({ page, size = 10 }) {
-        return fetch(`${SERVER_BASE_URL}/pet/list?page=${page}&size=${size}`, {
+    static getList({ page, size = 10 }: { page: number, size: number }) : Promise<Response>{
+        return fetch(`${SERVER_BASE_URL}/ShoppingList?page=${page}&size=${size}`, {
             method: 'get',
             mode: 'cors',
             headers: new Headers({ 'content-type': 'application/json' })
@@ -13,7 +19,7 @@ export default class ApiPets {
     }
 
     // get pet detail
-    static get(id) {
+    static get(id:number) {
         return fetch(`${SERVER_BASE_URL}/pet/${id}`, {
             method: 'get',
             mode: 'cors',
