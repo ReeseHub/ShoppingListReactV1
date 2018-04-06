@@ -145,6 +145,13 @@ namespace ShoppingListWeb.Controllers
         {
         }
 
+        // GET api/<controller>/
+
+        public void GetCategories()
+        {
+
+        }
+
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)

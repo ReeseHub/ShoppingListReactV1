@@ -37,6 +37,7 @@ interface ReceiveWeatherForecastsAction {
 // declared type strings (and not any other arbitrary string).
 type KnownAction = RequestWeatherForecastsAction | ReceiveWeatherForecastsAction;
 
+
 // ----------------
 // ACTION CREATORS - These are functions exposed to UI components that will trigger a state transition.
 // They don't directly mutate state, but they can have external side-effects (such as loading data).
@@ -64,8 +65,13 @@ const unloadedState: WeatherForecastsState = { forecasts: [], isLoading: false }
 
 export const reducer: Reducer<WeatherForecastsState> = (state: WeatherForecastsState, incomingAction: Action) => {
     const action = incomingAction as KnownAction;
+
+
     switch (action.type) {
+        
         case 'REQUEST_WEATHER_FORECASTS':
+
+            
             return {
                 startDateIndex: action.startDateIndex,
                 forecasts: state.forecasts,
@@ -74,6 +80,7 @@ export const reducer: Reducer<WeatherForecastsState> = (state: WeatherForecastsS
         case 'RECEIVE_WEATHER_FORECASTS':
             // Only accept the incoming data if it matches the most recent request. This ensures we correctly
             // handle out-of-order responses.
+            var t = action.forecasts;
             if (action.startDateIndex === state.startDateIndex) {
                 return {
                     startDateIndex: action.startDateIndex,

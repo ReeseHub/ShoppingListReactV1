@@ -19,7 +19,7 @@ export default class ShoppingItemDeletePrompt extends React.Component<ShoppingIt
             <Modal show={show} onHide={this.handleClose}>
                 <Modal.Header>
                     <Modal.Title>
-                        Are you sure you want to delete pet <strong>{item.itemName}</strong>?
+                        Are you sure you want to delete pet <strong>{item.item}</strong>?
           </Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>

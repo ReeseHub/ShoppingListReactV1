@@ -6,7 +6,7 @@
 export interface ShoppingListItem {
 
     id: number,
-    itemName: string,
+    item: string,
     quantity: number,
     category: { id: number, name: string }
 }

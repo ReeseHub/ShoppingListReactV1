@@ -14,7 +14,7 @@ export default class ShoppingListElement extends React.Component<ShoppingListEle
         return (
             <tr>
                 <td>#{item.id}</td>
-                <td>{item.itemName}</td>
+                <td>{item.item}</td>
                 <td>{item.quantity}</td>
                 <td>{item.category.name}</td>
                 <td>
