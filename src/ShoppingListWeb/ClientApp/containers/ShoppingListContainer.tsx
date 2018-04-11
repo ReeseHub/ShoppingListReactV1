@@ -13,35 +13,61 @@ type ShoppingListContainterProps = ShoppingListState
 
 // Container component
 class ShoppingListContainter extends React.Component<ShoppingListContainterProps, {}> {
+
+    private routerPage: number = 0;
+
     componentWillMount() {
         console.log("here");
         // This method runs when the component is first added to the page
         let page = parseInt(this.props.match.params.page) || 1;
         let size = parseInt(this.props.match.params.size) || 10;
 
+        this.routerPage = page;
+
         this.props.fetchShoppingList(page, size);
-        console.log("here2");
+        console.log("page count in component will mount : " +  this.props.pageCount);
     }
+
 
     componentWillReceiveProps(nextProps: ShoppingListContainterProps) {
         // This method runs when incoming props (e.g., route params) change
-        let page = parseInt(this.props.match.params.page) || 1;
-        let size = parseInt(this.props.match.params.size) || 10;
+        let page = parseInt(nextProps.match.params.page) || 1;
+        let size = parseInt(nextProps.match.params.size) || 10;
 
-        this.props.fetchShoppingList(page, size);
+        // Only fetch if it has changed
+        //if (this.props.location.pathname === nextProps.location.pathname) {
+        //    return;
+        //}
 
-        
-     
+        this.routerPage = page;
+
+        //if (page !== this.props.page)
+        //{
+        //    nextProps.fetchShoppingList(page, size);
+
+        //    var currentdate = new Date();
+        //    var datetime = "Last Sync: " + currentdate.getDate() + "/"
+        //        + (currentdate.getMonth() + 1) + "/"
+        //        + currentdate.getFullYear() + " @ "
+        //        + currentdate.getHours() + ":"
+        //        + currentdate.getMinutes() + ":"
+        //        + currentdate.getSeconds();
+
+        //    console.log("Receive Props called " + datetime);
+        //}
     }
 
     public render() {
         return (
             <div className="page-home">
               
-                <ShoppingList shoppingItems={this.props.shoppingItems}
-                    page={this.props.page}
+                <ShoppingList
+                    shoppingItems={this.props.shoppingItems}
+                    page={this.routerPage}
                     isLoading={this.props.isLoading}
-                    fetchShoppingList={this.props.fetchShoppingList} />
+                    pageCount={this.props.pageCount}
+                    fetchShoppingList={this.props.fetchShoppingList}
+                    changePage={this.props.changePage} />
             </div>
         );
 

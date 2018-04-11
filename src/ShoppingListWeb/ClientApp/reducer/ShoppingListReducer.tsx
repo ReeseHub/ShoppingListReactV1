@@ -10,21 +10,25 @@ import { ShoppingListItem } from '../store/ShoppingListElement';
 const initialState: ShoppingListState = {
     shoppingItems: new Array<ShoppingListItem>(),
     isLoading: false,
-    page: 0
+    page: 0,
+    pageCount :1
 };
 
 
 export const reducer: Reducer<ShoppingListState> = (state: ShoppingListState = initialState, incomingAction: Action) => {
 
     const action = incomingAction as ShoppingListKnownAction;
+
+    console.log("In reducer");
+
+    console.log(action.type);
     
     switch (action.type) {
         case ActionTypeKeys.FETCH_SHOPPINGLIST_REQUEST:
-
+            // 
             return Object.assign({}, state, {
-                shoppingItems: state.shoppingItems,
-                page: state.page,
-                isLoading: true
+                isLoading: true,
+                page : action.page
             });
 
         case ActionTypeKeys.FETCH_SHOPPINGLIST_SUCCESS:
@@ -33,15 +37,17 @@ export const reducer: Reducer<ShoppingListState> = (state: ShoppingListState = i
 
             console.log("action page : " + action.page);
             console.log("state page : " + state.page);
-            console.log(action.shoppingList);
+            //console.log(action.shoppingList);
 
-            if (action.page !== state.page) {
+            if (action.page === state.page) {
                 return Object.assign({}, state, {
-                    shoppingItems: [...action.shoppingList],
+                    shoppingItems: action.shoppingList,// [...action.shoppingList],
                     page: action.page,
-                    isLoading: false
+                    isLoading: false,
+                    pageCount : action.pageCount
                 });
             }
+            
 
             break;
         default:
@@ -49,5 +55,5 @@ export const reducer: Reducer<ShoppingListState> = (state: ShoppingListState = i
             const exhaustiveCheck: never = action;
     }
 
-    return state || initialState;
+    return state;// || initialState;
 };

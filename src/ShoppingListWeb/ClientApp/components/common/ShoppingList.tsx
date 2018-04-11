@@ -11,11 +11,12 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 
 type ShoppingListProps = ShoppingListState &
     typeof ShoppingListActions.actionCreators
-   // &     RouteComponentProps<{ page: string }>; // ... plus incoming routing parameters
+   //&     RouteComponentProps<{ page: string, size: string }>; // ... plus incoming routing parameters
     
 
 // Pet list component
 export class ShoppingList extends React.Component<ShoppingListProps, {}> {
+    
     // constructor
     constructor(props: ShoppingListProps) {
         super(props);
@@ -33,17 +34,29 @@ export class ShoppingList extends React.Component<ShoppingListProps, {}> {
         this.itemDelete = this.itemDelete.bind(this);
     }
 
+    componentWillReceiveProps(nextProps: ShoppingListProps) {
+
+        if (this.props.page !== nextProps.page) {
+
+            nextProps.fetchShoppingList(nextProps.page);
+        }
+
+    }
+
     // render
     render() {
         // pagination
-        const { shoppingItems, page } = this.props;
+        const { shoppingItems, page, pageCount } = this.props;
         const per_page = 10;
-        const pages = Math.ceil(shoppingItems.length / per_page);
+        const pages = pageCount;
         const start_offset = (page - 1) * per_page;
         let start_count = 0;
 
+        // console.log(shoppingItems);
+        // console.log("Shopping list render Page Count: " + pageCount);
+        //console.log("Shopping list Count: " + shoppingItems.length);
+        console.log("Shopping list items");
         console.log(shoppingItems);
-
         // show the list of pets
         return (
             <div>
@@ -61,20 +74,18 @@ export class ShoppingList extends React.Component<ShoppingListProps, {}> {
                     <tbody>
                         {
                             shoppingItems.map((listItem, index) => {
-                            if (index >= start_offset && start_count < per_page) {
-                                start_count++;
-                                
+
                                 return (
                                     <ShoppingListElement key={listItem.id} item={listItem} showDelete={this.showDelete} />
                                 );
-                            }
+                            
                         })}
                     </tbody>
                 </Table>
 
                 {this.renderPagination(page, pages)}
 
-                {this.renderTest(shoppingItems)}
+              
               
             </div>
         );
@@ -85,35 +96,29 @@ export class ShoppingList extends React.Component<ShoppingListProps, {}> {
 
     private renderPagination(activePage: number, pages: number) {
 
-       
+        console.log("In render pagination : " + pages);
 
         const items = new Array<any>(); 
 
         for (let number = 1; number <= pages; number++) {
             items.push(
-                <Pagination.Item key={number} active={number === activePage}>{number}</Pagination.Item>
+                <Pagination.Item key={number} active={number === activePage} onClick={(e) => this.changePage(number)} >{number}</Pagination.Item>
             );
+        }
 
             const paginationBasic = (
-                <Pagination bsSize="medium" className="pets-pagination pull-right">{items}</Pagination>
-            );
+            <Pagination bsSize="medium" className="pets-pagination pull-right">{ items }</Pagination>
+        );
 
-            return paginationBasic;
-        }
+        return paginationBasic;
     }
 
-    private renderTest(shoppingList: ShoppingListItem[])
-    {
-        console.log("In render test");
-
-        console.log(shoppingList);
-
-        return <div></div>
-    };
-
+  
     // change the pet lists' current page
     changePage(page : number) {
-        this.props.fetchShoppingList(page);
+        console.log('Change page called');
+
+        this.props.changePage(page);
     }
 
     // show the delete pet prompt
