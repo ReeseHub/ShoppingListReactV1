@@ -41,6 +41,28 @@
     "webpack": "2.5.1",
     "webpack-hot-middleware": "2.18.2",
     "webpack-merge": "4.1.0",
-    "react-bootstrap": "0.32.1"
+    "react-bootstrap": "0.32.1",
+    "jest": "22.4.3",
+    "enzyme": "3.3.0",
+    "ts-jest": "22.4.2",
+    "@types/jest": "22.2.2",
+    "@types/enzyme": "3.1.9",
+    "@types/enzyme-adapter-react-15": "1.0.2",
+    "enzyme-adapter-react-15": "1.0.5",
+    "react-test-renderer": "15.5.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__test__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
   }
 }

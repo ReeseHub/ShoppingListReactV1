@@ -24,7 +24,9 @@
     <None Remove="ClientApp\actions\ActionTypes.ts" />
     <None Remove="ClientApp\actions\ShoppingListActions.ts" />
     <None Remove="ClientApp\containers\ShoppingListContainer.tsx" />
+    <None Remove="ClientApp\Navigator.ts" />
     <None Remove="ClientApp\reducer\ShoppingListReducer.tsx" />
+    <None Remove="__test__\ShoppingListElementTests.tsx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +37,9 @@
     <TypeScriptCompile Include="ClientApp\actions\ActionTypes.ts" />
     <TypeScriptCompile Include="ClientApp\actions\ShoppingListActions.ts" />
     <TypeScriptCompile Include="ClientApp\containers\ShoppingListContainer.tsx" />
+    <TypeScriptCompile Include="ClientApp\navigator.ts" />
     <TypeScriptCompile Include="ClientApp\reducer\ShoppingListReducer.tsx" />
+    <TypeScriptCompile Include="__test__\ShoppingListElementTests.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
