@@ -4,7 +4,8 @@ import ShoppingListElement from "../ClientApp/components/common/ShoppingListElem
 import { ShoppingListElementState, ShoppingListItem } from "../ClientApp/store/ShoppingListElement";
 
 import * as enzyme from 'enzyme';
-import * as Adapter  from 'enzyme-adapter-react-15';
+import * as Adapter from 'enzyme-adapter-react-15';
+import * as renderer from 'react-test-renderer';
 
 enzyme.configure({ adapter: new Adapter() });
 
@@ -18,8 +19,6 @@ const testShoppingListElementProps: ShoppingListElementState = {
 
     },
     showDelete: (item: ShoppingListItem): void => { }
-
-
 };
 
 let child: ShallowWrapper<undefined, undefined>;
@@ -34,6 +33,11 @@ it("should render without error", () => {
     console.log(child);
     expect(child.length).toBe(1));
 };
+
+it('renders correctly', () => {
+   
+    expect(child).toMatchSnapshot();
+});
 
 
 

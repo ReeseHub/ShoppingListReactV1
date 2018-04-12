@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<tr>
+  <td>
+    #
+    1
+  </td>
+  <td>
+    Test
+  </td>
+  <td>
+    2
+  </td>
+  <td>
+    TestCategory
+  </td>
+  <td>
+    <Link
+      replace={false}
+      to="shoppinglist-edit/1"
+    >
+      <Button
+        active={false}
+        block={false}
+        bsClass="btn"
+        bsSize="xsmall"
+        bsStyle="default"
+        disabled={false}
+      >
+        Edit 
+        <Glyphicon
+          bsClass="glyphicon"
+          glyph="edit"
+        />
+      </Button>
+    </Link>
+  </td>
+  <td>
+    <Button
+      active={false}
+      block={false}
+      bsClass="btn"
+      bsSize="xsmall"
+      bsStyle="default"
+      className="pet-delete"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Delete 
+      <Glyphicon
+        bsClass="glyphicon"
+        glyph="remove-circle"
+      />
+    </Button>
+  </td>
+</tr>
+`;
