@@ -4,7 +4,7 @@ import ShoppingListElement from "../ClientApp/components/common/ShoppingListElem
 import { ShoppingListElementState, ShoppingListItem } from "../ClientApp/store/ShoppingListElement";
 
 import * as enzyme from 'enzyme';
-import * as Adapter from 'enzyme-adapter-react-15';
+import * as Adapter from 'enzyme-adapter-react-16';
 import * as renderer from 'react-test-renderer';
 
 enzyme.configure({ adapter: new Adapter() });
@@ -28,11 +28,22 @@ let child: ShallowWrapper<undefined, undefined>;
 beforeEach(() =>
     child = shallow(<ShoppingListElement {...testShoppingListElementProps} />));
 
- //checking that all is fine and component has been rendered
+
 it("should render without error", () => {
-    console.log(child);
-    expect(child.length).toBe(1));
-};
+
+    expect(1).toBe(1);
+});
+
+it("should render without error", () => {
+
+    expect(child.length).toBe(1);
+});
+
+ //checking that all is fine and component has been rendered
+//it("should render without error", () => {
+//    console.log(child);
+//    expect(child.length).toBe(1);
+//});
 
 it('renders correctly', () => {
    
