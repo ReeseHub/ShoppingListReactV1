@@ -76,6 +76,8 @@ class ShoppingListContainter extends React.Component<ShoppingListContainterProps
 
 //<ShoppingList shoppingItems={this.props.shoppingItems} page={this.props.page} fetchShoppingList={this.props.fetchShoppingList} />
 
+//export default connect<ShoppingListContainterProps>((state: ApplicationState) => state.shoppingList, ShoppingListActions.actionCreators)(ShoppingListContainter) as any;
+
 export default connect(
     (state: ApplicationState) => state.shoppingList, // Selects which state properties are merged into the component's props
     ShoppingListActions.actionCreators                // Selects which action creators are merged into the component's props
